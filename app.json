@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "My_First_React_native_expo_app",
+    "name": "Tasks",
     "slug": "My_First_React_native_expo_app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/Sticky-note.jpg",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ecochan.My_First_React_native_expo_app"
     },
     "web": {
       "bundler": "metro",
@@ -31,6 +32,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "b0afb068-bfcb-499f-ba53-ef86025133cf"
+      }
     }
   }
 }

@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
-import { Button, Modal, Platform, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import {  StyleSheet, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { Text, View } from '@/components/Themed';
+import { View } from '@/components/Themed';
 import  DateTimePicker  from '@react-native-community/datetimepicker';
 
 

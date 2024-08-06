@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Modal, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { Text, View } from '@/components/Themed';
-import { MaterialIcons } from '@expo/vector-icons';
+import { Button, StyleSheet, TextInput } from 'react-native';
+import { View } from '@/components/Themed';
 import AddTime from './AddTime';
 
 

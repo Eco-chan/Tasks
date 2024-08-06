@@ -1,4 +1,4 @@
-import { Button, FlatList, Modal, StyleSheet, TextInput, TouchableOpacity, Alert} from 'react-native';
+import { FlatList, Modal, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import { Text, View } from '@/components/Themed';
 import { useEffect, useState, useCallback } from 'react';
 import  TaskItem  from '@/components/TaskItem';
