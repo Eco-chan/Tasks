@@ -13,6 +13,7 @@ const db = SQLite.openDatabaseSync('Tasks');
 
 
 export default function TabOneScreen() {
+    //declaring the various states
     const [todos, setTodos] = useState([
        {key: 100 , text:'Please enter your tasks through the add button' , date:'', time:''},
     ]);
@@ -26,8 +27,10 @@ export default function TabOneScreen() {
 
   
 
-        
+        //creating a table in the database:
         const createTable = async ()=>{const all = (await db).execAsync('create table if not exists Tasks (key integer primary key not null, text text, date text, time text);');}
+    
+       //a function that return all user tasks from the database:
         const selectAll = async ()=>{ 
           const todoItem = [];
           const allrows =  (await db).getAllSync('SELECT * FROM Tasks');
@@ -35,13 +38,13 @@ export default function TabOneScreen() {
        
           return allrows;
         }
-        const dropTable = async ()=>{ const drop = (await db).execAsync('drop table Tasks');}
-        
+
+        // a function to select all keys from the database:
         const selectKeys = async() => { const allkeys = await db.getAllSync('SELECT key FROM Tasks');
           return allkeys;
         }
       
-         
+        //initial function when opening the app that load data from the database: 
       const loadDataCallback = useCallback(async () => {
         try {
           await createTable();
@@ -64,12 +67,13 @@ export default function TabOneScreen() {
           console.error(error);
         }
       }, []);
-    
+
+    //to get the function loadDataCallback execute once on load
       useEffect(() => {
         loadDataCallback();
       }, [loadDataCallback]);
    
-    
+    //get the key of the task to be edited
     const getKey = (key) => {
       setOpenEdit(true);
       let task = todos.filter(todo => todo.key === key);
@@ -80,6 +84,7 @@ export default function TabOneScreen() {
       setDate(date);
     }
 
+    //edit the task and update the database with the edited task
     const editHandler = async (change)=> {
       if (change.length > 3){
       const update = async() => {await db.runAsync('update Tasks set (text, date, time) = (?,?,?) where key = ?', change, date.date, date.time, editTask_Key);}
@@ -95,6 +100,7 @@ export default function TabOneScreen() {
 
       
     }
+    //deleting a task from the todo array and the database
     const pressHandler = (key) => {
        console.log('this is key ' + key);
         const del = async()=> {await db.runAsync('DELETE FROM Tasks WHERE key = $value', { $value: key });} 
@@ -104,11 +110,13 @@ export default function TabOneScreen() {
           return prevTodos.filter(task => task.key != key);
         })
     }
-   
+
+    //get the date values from the child addtask component
     const onDataReceived = (data) => {
       setDate(data);
     };
 
+    //retrieving the key of the last item in the database
     const get_last_key = async ()=>{
        
       let allkeys = await selectKeys();
@@ -121,6 +129,7 @@ export default function TabOneScreen() {
      
       console.log('these are the keys ' + allkeys);
 
+      
       let last_key = allkeys[allkeys.length - 1];
      
       console.log(last_key.key);
@@ -128,7 +137,7 @@ export default function TabOneScreen() {
       return last_key.key;
     }
   
-
+    //adding a task to the todo array and to the database
     const addHandler = async (change) => {
         if (change.length > 3){
           const Add = async() => {(await db).runAsync('insert or replace into Tasks (text, date, time) values (?, ?, ?)', change, date.date, date.time);
@@ -156,7 +165,7 @@ export default function TabOneScreen() {
         
     }
     
-
+//what should appeare on the screen
   return (
     <View style={Styles.container}>
       <View style={Styles.content }>
