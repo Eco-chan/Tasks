@@ -4,7 +4,7 @@
     "slug": "My_First_React_native_expo_app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/Sticky-note.jpg",
+    "icon": "./assets/images/note.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -17,7 +17,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/note.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.ecochan.My_First_React_native_expo_app"
@@ -25,7 +25,7 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/note.png"
     },
     "plugins": [
       "expo-router"

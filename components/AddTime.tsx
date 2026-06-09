@@ -5,10 +5,8 @@ import { Feather } from '@expo/vector-icons';
 import { View } from '@/components/Themed';
 import  DateTimePicker  from '@react-native-community/datetimepicker';
 
-
 export default function AddTime(props){
   
-
    return (
     <View style={Styles.row}> 
          <TouchableOpacity onPress={() => (props.modeDeterminer('date','calendar'))} style={Styles.modal}>

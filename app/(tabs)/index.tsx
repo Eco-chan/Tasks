@@ -29,8 +29,8 @@ export default function TabOneScreen() {
 
         //creating a table in the database:
         const createTable = async ()=>{const all = (await db).execAsync('create table if not exists Tasks (key integer primary key not null, text text, date text, time text);');}
-    
-       //a function that return all user tasks from the database:
+        
+        //a function that return all user tasks from the database:
         const selectAll = async ()=>{ 
           const todoItem = [];
           const allrows =  (await db).getAllSync('SELECT * FROM Tasks');
@@ -39,6 +39,7 @@ export default function TabOneScreen() {
           return allrows;
         }
 
+        
         // a function to select all keys from the database:
         const selectKeys = async() => { const allkeys = await db.getAllSync('SELECT key FROM Tasks');
           return allkeys;
@@ -61,14 +62,13 @@ export default function TabOneScreen() {
             
           })
           console.log('these are the items '+ JSON.stringify(storedTodoItem));
-          // dropTable();
 
         } catch (error) {
           console.error(error);
         }
       }, []);
-
-    //to get the function loadDataCallback execute once on load
+      
+      //to get the function loadDataCallback execute once on load
       useEffect(() => {
         loadDataCallback();
       }, [loadDataCallback]);
@@ -83,7 +83,7 @@ export default function TabOneScreen() {
       const date = {date: task[0].date, time: task[0].time, total: new Date()};
       setDate(date);
     }
-
+   
     //edit the task and update the database with the edited task
     const editHandler = async (change)=> {
       if (change.length > 3){
@@ -110,7 +110,7 @@ export default function TabOneScreen() {
           return prevTodos.filter(task => task.key != key);
         })
     }
-
+   
     //get the date values from the child addtask component
     const onDataReceived = (data) => {
       setDate(data);
@@ -137,7 +137,7 @@ export default function TabOneScreen() {
       return last_key.key;
     }
   
-    //adding a task to the todo array and to the database
+     //adding a task to the todo array and to the database
     const addHandler = async (change) => {
         if (change.length > 3){
           const Add = async() => {(await db).runAsync('insert or replace into Tasks (text, date, time) values (?, ?, ?)', change, date.date, date.time);
